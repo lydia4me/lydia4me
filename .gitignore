@@ -15,7 +15,4 @@ rebel.xml
 .idea
 *.ipr
 *.iws
-projects/fourjoy-web/src/main/webapp/report/images/
-projects/fourjoy-web/src/main/webapp/documents/
-projects/fourjoy-web/.externalToolBuilders/
 
