@@ -17,17 +17,13 @@ public class QuickSort {
 				i ++;
 			}
 			if(arr[i] > arr[j]){
-				int temp = arr[i];
-				arr[i] = arr[j];
-				arr[j] = temp;
+				swap(arr, i, j);
 			}
 			while(i < j && arr[i] <= arr[j]){
 				j --;
 			}
 			if(arr[i] > arr[j]){
-				int temp = arr[i];
-				arr[i] = arr[j];
-				arr[j] = temp;
+				swap(arr, i, j);
 			}
 		}
 		if(i - start > 1){
@@ -36,5 +32,11 @@ public class QuickSort {
 		if(end - i > 1){
 			quickSort(arr, i + 1, end);
 		}
+	}
+
+	private static void swap(int[] arr, int i, int j) {
+		int temp = arr[i];
+		arr[i] = arr[j];
+		arr[j] = temp;
 	}
 }
