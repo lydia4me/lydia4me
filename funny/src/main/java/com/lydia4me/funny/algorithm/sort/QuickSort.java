@@ -29,14 +29,16 @@ public class QuickSort {
 		if(i - start > 1){
 			quickSort(arr, start, i - 1);
 		}
-		if(end - i > 1){
-			quickSort(arr, i + 1, end);
+		if(end - j > 1){
+			quickSort(arr, j + 1, end);
 		}
 	}
 
 	private static void swap(int[] arr, int i, int j) {
-		int temp = arr[i];
-		arr[i] = arr[j];
-		arr[j] = temp;
+		if(i >= 0 && i < arr.length && j >= 0 && j < arr.length){
+			int temp = arr[i];
+			arr[i] = arr[j];
+			arr[j] = temp;
+		}
 	}
 }
