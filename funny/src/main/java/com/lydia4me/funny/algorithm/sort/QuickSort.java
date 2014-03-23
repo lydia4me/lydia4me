@@ -1,10 +1,10 @@
 package com.lydia4me.funny.algorithm.sort;
 
 public class QuickSort {
-	public static void main(String[] args){
-		int[] arr = {7,3,8,4,56,78,3,2,89,4};
+	public static void main(String[] args) {
+		int[] arr = { 7, 3, 8, 4, 56, 78, 3, 2, 89, 4 };
 		quickSort(arr, 0, arr.length - 1);
-		for(int i : arr){
+		for (int i : arr) {
 			System.out.println(i);
 		}
 	}
