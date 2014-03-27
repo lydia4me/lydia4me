@@ -5,9 +5,9 @@ public class Singleton {
 	private Singleton(){
 	}
 	public static Singleton getInstance(){
-		synchronized(singleton){
-			if(singleton == null){
-				synchronized(singleton){
+		if(singleton == null){
+			synchronized(Singleton.class){
+				if(singleton == null){
 					singleton = new Singleton();
 				}
 			}
