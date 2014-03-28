@@ -15,11 +15,11 @@ public class Producer implements Runnable {
 			for(int i = 0; i < newNum; i ++){
 				newProducts.add(String.valueOf(i));
 			}
-			System.out.println("Producer: 新生产"+newNum+"个产品");
+			System.out.println("\t\tProducer: 新生产"+newNum+"个产品");
 			Store.getInstance().storeIn(newProducts);
 			num --;
 			try {
-				System.out.println("Producer: 休息3秒钟再说把");
+				System.out.println("\t\tProducer: 休息3秒钟再说把");
 				System.out.println();
 				Thread.sleep(3000);
 			} catch (InterruptedException e) {

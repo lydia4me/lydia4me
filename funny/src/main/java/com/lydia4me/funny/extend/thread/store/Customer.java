@@ -9,9 +9,9 @@ public class Customer implements Runnable {
 		int num = 5;
 		while(num > 0){
 			int buyNum = new Random().nextInt(10);
-			System.out.println("Customer: 我要购买"+buyNum+"个产品");
+			System.out.println("\t\t\t\tCustomer: 我要购买"+buyNum+"个产品");
 			Store.getInstance().storeOut(buyNum);
-			System.out.println("Customer: 购买"+buyNum+"个产品成功");
+			System.out.println("\t\t\t\tCustomer: 购买"+buyNum+"个产品成功");
 			num --;
 			try {
 				System.out.println();
