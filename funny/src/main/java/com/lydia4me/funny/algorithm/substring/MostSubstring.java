@@ -15,7 +15,7 @@ public class MostSubstring {
 		int maxCount = 0;
 		String maxCountStr = "";
 		for(int i = 0; i < str.length(); i ++){
-			for(int j = 2; i + j <= str.length(); j ++){
+			for(int j = 2; j < str.length() / 2 && i + j <= str.length(); j ++){
 				String subStr = str.substring(i, i + j);
 				int count = 1;
 				if(strCountMap.containsKey(subStr)){
@@ -28,7 +28,9 @@ public class MostSubstring {
 				}
 			}
 		}
-		
+		for(String key : strCountMap.keySet()){
+			System.out.println(key + ":" + strCountMap.get(key));
+		}
 		return maxCountStr;
 	}
 }
