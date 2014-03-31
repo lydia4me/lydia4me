@@ -17,7 +17,7 @@ public class MergeSort {
 		int index = 0;
 		int i = 0;
 		int j = 0;
-		while(index < size){
+		while(i < left.length && j < right.length){
 			while(i < left.length && j < right.length && left[i] >= right[j]){
 				result[index] = right[j];
 				j ++;
@@ -28,16 +28,12 @@ public class MergeSort {
 				i ++;
 				index ++;
 			}
-			if(i == left.length && j < right.length){
-				for(int k = j; k < right.length; k ++, index++){
-					result[index] = right[k];
-				}
-			}
-			if(j == right.length && i < left.length){
-				for(int k = i; k < left.length; k ++, index++){
-					result[index] = left[k];
-				}
-			}
+		}
+		if(i == left.length && j < right.length){
+			System.arraycopy(right, j, result, index, right.length - j);
+		}
+		if(j == right.length && i < left.length){
+			System.arraycopy(left, i, result, index, left.length - i);
 		}
 		return result;
 	}
