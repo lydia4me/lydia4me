@@ -16,11 +16,7 @@ public class AtomicIntegerTest {
 					for(int j = 0; j < 100; j ++){
 						normal++;
 						atomicInt.incrementAndGet();
-						try {
-							Thread.sleep(10L);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
+						Thread.yield();
 					}
 				}
 			});
