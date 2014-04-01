@@ -1,7 +1,5 @@
 package com.lydia4me.funny.algorithm.minimumStep;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *	
@@ -20,24 +18,19 @@ First element is 1, so can only go to 3.
 Second element is 3, so can make at most 3 jumps: eg to 5 or 2 or 9. 
  */
 public class MinimumStep {
-	private static List<String> roads = new ArrayList<String>();
 	private final static String CONNECTOR = "-> ";
+	private static String minRoad = "";
+	private static Integer counter = Integer.MAX_VALUE;
 
 	public static void main(String[] args) {
 		int[] input = { 1, 3, 5, 2, 9, 3, 1, 1, 8 };
 		getMinimumStep(input, 0, "");
-		if (roads.size() == 0) {
-			System.out.println("-1: There is no way to the last elements.");
+		if (counter == Integer.MAX_VALUE) {
+			System.out.println("-1: There is no way to the last element.");
 			return;
 		}
-		String minStep = roads.get(0);
-		for (String road : roads) {
-			if (road.split(CONNECTOR).length < minStep.split(CONNECTOR).length) {
-				minStep = road;
-			}
-		}
-		System.out.println("The minimum step to the last element is:" + (minStep.split(CONNECTOR).length - 1));
-		System.out.println("The minimum road to the last element is:" + minStep);
+		System.out.println("The minimum step to the last element is:" + counter);
+		System.out.println("The minimum road to the last element is:" + minRoad);
 	}
 
 	private static void getMinimumStep(int[] input, int current, String road) {
@@ -50,7 +43,12 @@ public class MinimumStep {
 		}
 		road += stepNum;
 		if (current + stepNum >= input.length - 1) {
-			roads.add(road + CONNECTOR + input[input.length - 1]);
+			String thisRoad = road + CONNECTOR + input[input.length-1];
+			int thisCounter = thisRoad.split(CONNECTOR).length - 1;
+			if(counter == Integer.MAX_VALUE || thisCounter < counter){
+				minRoad = thisRoad;
+				counter = thisCounter;
+			}
 			return;
 		}
 		for (int i = current + 1; i <= current + stepNum; i++) {
