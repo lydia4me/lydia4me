@@ -19,11 +19,22 @@ Second element is 3, so can make at most 3 jumps: eg to 5 or 2 or 9.
  */
 public class MinimumStep {
 	private final static String CONNECTOR = "-> ";
-	private static String minRoad = "";
-	private static Integer counter = Integer.MAX_VALUE;
+	private String minRoad = "";
+	private Integer counter = Integer.MAX_VALUE;
+	private int[] input;
+
+	public MinimumStep(int[] input) {
+		super();
+		this.input = input;
+	}
 
 	public static void main(String[] args) {
 		int[] input = { 1, 3, 5, 2, 9, 3, 1, 1, 8 };
+		MinimumStep step = new MinimumStep(input);
+		step.printMinimumStep();
+	}
+	
+	public void printMinimumStep(){
 		getMinimumStep(input, 0, "");
 		if (counter == Integer.MAX_VALUE) {
 			System.out.println("-1: There is no way to the last element.");
@@ -33,7 +44,7 @@ public class MinimumStep {
 		System.out.println("The minimum road to the last element is:" + minRoad);
 	}
 
-	private static void getMinimumStep(int[] input, int current, String road) {
+	private void getMinimumStep(int[] input, int current, String road) {
 		int stepNum = input[current];
 		if (stepNum == 0) {
 			return;
