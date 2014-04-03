@@ -80,31 +80,31 @@ public class MinimumStep {
 	
 	private String improvedMinimumStep(int[] input){
 		StringBuilder road = new StringBuilder();
-		int current = 0;
+		int index = 0;
 		while(true){
 			times ++;
-			int num = input[current];
+			int num = input[index];
 			if(!"".equals(road.toString())){
 				road.append(CONNECTOR);
 			}
 			road.append(num);
-			if(current + num >= input.length - 1){
+			if(index + num >= input.length - 1){
 				road.append(CONNECTOR).append(input[input.length - 1]);
 				return road.toString();
 			}
 			if(num == 0){
 				return "-1";
 			}
-			int nextCurrent = current + 1;
-			int max = input[nextCurrent]+nextCurrent;
-			for(int i = nextCurrent + 1; i <= current + num; i ++){
+			int nextIndex = index + 1;
+			int max = input[nextIndex]+nextIndex;
+			for(int i = nextIndex + 1; i <= index + num; i ++){
 				times ++;
 				if(input[i]+i >= max){
-					nextCurrent = i;
+					nextIndex = i;
 					max = input[i]+i;
 				}
 			}
-			current = nextCurrent;
+			index = nextIndex;
 		}
 	}
 }
