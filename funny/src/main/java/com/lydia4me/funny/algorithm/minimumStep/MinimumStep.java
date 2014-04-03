@@ -79,15 +79,18 @@ public class MinimumStep {
 	}
 	
 	private String improvedMinimumStep(int[] input){
-		String road = "";
+		StringBuilder road = new StringBuilder();
 		int current = 0;
 		while(true){
 			times ++;
 			int num = input[current];
-			road += CONNECTOR + num;
+			if(!"".equals(road.toString())){
+				road.append(CONNECTOR);
+			}
+			road.append(num);
 			if(current + num >= input.length - 1){
-				road += CONNECTOR + input[input.length - 1];
-				return road;
+				road.append(CONNECTOR).append(input[input.length - 1]);
+				return road.toString();
 			}
 			if(num == 0){
 				return "-1";
