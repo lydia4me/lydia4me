@@ -22,19 +22,28 @@ public class MinimumStep {
 	private String minRoad = "";
 	private Integer counter = Integer.MAX_VALUE;
 	private int[] input;
-
+	private int times = 0;
+	
 	public MinimumStep(int[] input) {
 		super();
 		this.input = input;
 	}
 
 	public static void main(String[] args) {
-		int[] input = { 1, 3, 5, 2, 9, 3, 1, 1, 8 };
+		//-------------!-!-----!---------------!-------------!---------------!-------------!-
+//		int[] input = {1,3,5,2,9,3,1,1,8,4,3,5,8,2,1,2,3,4,6,8,4,7,2,8,3,2,5,7,9,3,2,5,7,9,2};
+		int[] input = {1,2,1,2,1,3,1,1,8};
+		//-------------!-!-----!---------------!-------------!-------!---------!-----------!-
 		MinimumStep step = new MinimumStep(input);
 		step.printMinimumStep();
 	}
 	
 	public void printMinimumStep(){
+		System.out.println("Number count : " + input.length);
+		System.out.println("Improved road:"+improvedMinimumStep(input));
+		System.out.println("Improved time:"+times);
+		System.out.println();
+		times = 0;
 		getMinimumStep(input, 0, "");
 		if (counter == Integer.MAX_VALUE) {
 			System.out.println("-1: There is no way to the last element.");
@@ -42,9 +51,11 @@ public class MinimumStep {
 		}
 		System.out.println("The minimum step to the last element is:" + counter);
 		System.out.println("The minimum road to the last element is:" + minRoad);
+		System.out.println("Time is : "+ times);
 	}
 
 	private void getMinimumStep(int[] input, int current, String road) {
+		times ++;
 		int stepNum = input[current];
 		if (stepNum == 0) {
 			return;
@@ -64,6 +75,33 @@ public class MinimumStep {
 		}
 		for (int i = current + 1; i <= current + stepNum; i++) {
 			getMinimumStep(input, i, road);
+		}
+	}
+	
+	private String improvedMinimumStep(int[] input){
+		String road = "";
+		int current = 0;
+		while(true){
+			times ++;
+			int num = input[current];
+			road += CONNECTOR + num;
+			if(current + num >= input.length - 1){
+				road += CONNECTOR + input[input.length - 1];
+				return road;
+			}
+			if(num == 0){
+				return "-1";
+			}
+			int nextCurrent = current + 1;
+			int max = input[nextCurrent]+nextCurrent;
+			for(int i = nextCurrent + 1; i <= current + num; i ++){
+				times ++;
+				if(input[i]+i >= max){
+					nextCurrent = i;
+					max = input[i]+i;
+				}
+			}
+			current = nextCurrent;
 		}
 	}
 }
