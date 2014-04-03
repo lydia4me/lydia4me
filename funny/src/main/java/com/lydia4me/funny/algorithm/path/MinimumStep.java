@@ -1,4 +1,4 @@
-package com.lydia4me.funny.algorithm.minimumStep;
+package com.lydia4me.funny.algorithm.path;
 
 
 /**
