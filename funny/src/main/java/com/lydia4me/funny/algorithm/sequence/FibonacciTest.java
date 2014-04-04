@@ -7,15 +7,15 @@ package com.lydia4me.funny.algorithm.sequence;
 public class FibonacciTest {
 	public static void main(String[] args) {
 		int size = 40;
-		int[] seq = new int[size];
+		int[] seq = new int[2];
 		int i = 0;
 		while(i < size){
 			if(i < 2){
 				seq[i] = 1;
 			}else{
-				seq[i] = seq[i - 1] + seq[i - 2];
+				seq[i%2] = seq[0] + seq[1];
 			}
-			System.out.print(seq[i]+",  ");
+			System.out.print(seq[i%2]+",  ");
 			i ++;
 		}
 	}
