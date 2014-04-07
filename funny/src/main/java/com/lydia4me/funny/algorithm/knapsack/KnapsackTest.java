@@ -12,6 +12,7 @@ public class KnapsackTest {
 		System.out.println("times="+times);
 	}
 	
+	//TODO:improve
 	private static int knapsack(int maxVolume, int[] volume, int[] value, int n){
 		times ++;
 		if(n == 0 || maxVolume == 0){
