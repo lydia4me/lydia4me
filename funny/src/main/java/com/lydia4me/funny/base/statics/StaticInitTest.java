@@ -1,16 +1,21 @@
 package com.lydia4me.funny.base.statics;
 
 public class StaticInitTest {
-	public static StaticInitTest getInstance(){
-		return new StaticInitTest();
+	private static StaticInitTest instance = new StaticInitTest();
+	private static int count = 1;
+	private StaticInitTest(){
+		System.out.println(count);
 	}
-
+	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		StaticInitTest.getInstance();
+	}
 
+	private static StaticInitTest getInstance() {
+		return instance;
 	}
 
 }

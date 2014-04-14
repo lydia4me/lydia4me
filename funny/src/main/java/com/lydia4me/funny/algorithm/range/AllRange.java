@@ -3,7 +3,7 @@ package com.lydia4me.funny.algorithm.range;
 
 public class AllRange {
 	public static void main(String[] args){
-		String str = "123";
+		String str = "12345";
 		char[] chs = str.toCharArray();
 		allRange(chs, 0, chs.length - 1);
 	}
