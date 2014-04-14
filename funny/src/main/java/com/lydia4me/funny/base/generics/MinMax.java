@@ -20,4 +20,11 @@ public class MinMax<E extends Comparable<E>> {
 		}
 		return right;
 	}
+	public static void main(String[] args){
+		Integer left = 16;
+		Integer right = 39;
+		MinMax<Integer> minMax = new MinMax<Integer>(left, right);
+		System.out.println(minMax.getMax());
+		System.out.println(minMax.getMin());
+	}
 }
