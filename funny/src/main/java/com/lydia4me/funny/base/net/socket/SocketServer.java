@@ -11,7 +11,28 @@ public class SocketServer {
 		try {
 			ServerSocket server = new ServerSocket(8082);
 			System.out.println("Server start...");
-			Socket socket = server.accept();
+			while(true){
+				Socket socket = server.accept();
+				Thread deal = new Thread(new SocketDeal(socket));
+				deal.start();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}
+class SocketDeal implements Runnable{
+	private Socket socket;
+	
+	public SocketDeal(Socket socket) {
+		super();
+		this.socket = socket;
+	}
+
+	@Override
+	public void run() {
+		try{
+			System.out.println("deal start");
 			InputStream in = socket.getInputStream();
 			BufferedInputStream bin = new BufferedInputStream(in);
 			StringBuilder sb = new StringBuilder();
@@ -20,10 +41,9 @@ public class SocketServer {
 				sb.append(new String(buffer));
 			}
 			System.out.println(sb.toString());
-			socket.getOutputStream().write("I am the server.".getBytes());
-			socket.getOutputStream().flush();
-		} catch (IOException e) {
+		}catch(IOException e){
 			e.printStackTrace();
 		}
 	}
 }
+
