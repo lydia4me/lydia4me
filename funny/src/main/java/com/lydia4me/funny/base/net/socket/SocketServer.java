@@ -3,6 +3,7 @@ package com.lydia4me.funny.base.net.socket;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -34,11 +35,15 @@ class SocketDeal implements Runnable{
 		try{
 			System.out.println("deal start");
 			InputStream in = socket.getInputStream();
+			OutputStream os = socket.getOutputStream();
 			BufferedInputStream bin = new BufferedInputStream(in);
 			StringBuilder sb = new StringBuilder();
 			byte[] buffer = new byte[1024];
 			while(bin.read(buffer) != -1){
 				sb.append(new String(buffer));
+				System.out.println("return to client");
+				os.write("return from server".getBytes());
+				os.flush();
 			}
 			System.out.println(sb.toString());
 		}catch(IOException e){
