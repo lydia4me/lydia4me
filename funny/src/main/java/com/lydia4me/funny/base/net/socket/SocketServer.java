@@ -33,7 +33,7 @@ class SocketDeal implements Runnable{
 	@Override
 	public void run() {
 		try{
-			System.out.println("deal start");
+			System.out.println("Server:deal start");
 			InputStream in = socket.getInputStream();
 			OutputStream os = socket.getOutputStream();
 			BufferedInputStream bin = new BufferedInputStream(in);
@@ -41,11 +41,12 @@ class SocketDeal implements Runnable{
 			byte[] buffer = new byte[1024];
 			while(bin.read(buffer) != -1){
 				sb.append(new String(buffer));
-				System.out.println("return to client");
-				os.write("return from server".getBytes());
+				os.write("return from server\n".getBytes());
+				os.write("over\n".getBytes());
 				os.flush();
 			}
-			System.out.println(sb.toString());
+			System.out.println("Server: this is from client--"+sb.toString());
+			socket.close();
 		}catch(IOException e){
 			e.printStackTrace();
 		}

@@ -33,6 +33,7 @@ public class SocketClient {
 				System.out.println("返回："+returnMsg.toString());
 				reader.close();
 				os.close();
+				socket.close();
 			}
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
