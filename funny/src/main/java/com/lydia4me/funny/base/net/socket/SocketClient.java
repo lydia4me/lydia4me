@@ -14,7 +14,7 @@ public class SocketClient {
 			InputStreamReader isr = new InputStreamReader(System.in);
 			BufferedReader br = new BufferedReader(isr);
 			String info = "";
-			while(!(info = br.readLine()).equals("bye")){
+			while((info = br.readLine())!= null && !info.equals("bye")){
 				Socket socket = new Socket("127.0.0.1", 8082);
 				OutputStream os = socket.getOutputStream();
 				InputStream is = socket.getInputStream();
@@ -26,7 +26,7 @@ public class SocketClient {
 				String ret = "";
 				StringBuilder returnMsg = new StringBuilder();
 				System.out.println("read from server");
-				while(!(ret = reader.readLine()).equals("over")){
+				while((ret = reader.readLine()) != null && !ret.equals("over")){
 					System.out.println(ret);
 					returnMsg.append(ret);
 				}
