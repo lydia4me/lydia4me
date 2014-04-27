@@ -18,6 +18,9 @@ public class ReverseWords {
 	}
 
 	public static void reverseNormally(String input){
+		if(input == null || input.length() == 1){
+			return;
+		}
 		String[] sub = input.split("\\s+");
 		List<String> list = Arrays.asList(sub);
 		Collections.reverse(list);
@@ -32,6 +35,9 @@ public class ReverseWords {
 	 * @param chs
 	 */
 	public static void reverse(char[] chs){
+		if(chs == null || chs.length == 1){
+			return;
+		}
 		reverse(chs, 0, chs.length);
 		int start = 0;
 		int end = 0;
