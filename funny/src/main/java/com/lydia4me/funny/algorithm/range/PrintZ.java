@@ -11,6 +11,7 @@ package com.lydia4me.funny.algorithm.range;
 public class PrintZ {
 
 	public static void main(String[] args) {
+		printZ();
 		int[][] input = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
 		int w1 = input.length;
 		int w2 = input[0].length;
@@ -34,4 +35,16 @@ public class PrintZ {
 		}
 	}
 
+	public static void printZ(){
+		int[][] input = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
+		int w = input.length;
+		for(int j = w-1; j > -w; j--){
+			int si = j < 0 ? -j : 0;
+			int sj = j > 0 ? j : 0;
+			while(si < w && sj < w){
+				System.out.print(input[si++][sj++]+" ");
+			}
+		}
+		System.out.println();
+	}
 }
