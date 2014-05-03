@@ -20,7 +20,6 @@ public class KnapsackTest {
         System.out.println("Time last : " + (end - start));
 	}
 	
-	//TODO:improve
 	private static int knapsack(int maxVolume, int[] volumes, int[] values, int n){
 		times ++;
 		if(n == 0 || maxVolume == 0){
