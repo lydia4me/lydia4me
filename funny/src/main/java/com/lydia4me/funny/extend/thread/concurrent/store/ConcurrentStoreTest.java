@@ -1,10 +1,11 @@
 package com.lydia4me.funny.extend.thread.concurrent.store;
 
 import java.util.NoSuchElementException;
+import java.util.Random;
 import java.util.concurrent.*;
 
 public class ConcurrentStoreTest {
-	private static LinkedBlockingQueue<String> msgQueue = new LinkedBlockingQueue<String>(3);
+	private static LinkedBlockingQueue<String> msgQueue = new LinkedBlockingQueue<String>(2);
 
 	public static void main(String[] args) {
 		ExecutorService producerService = Executors.newFixedThreadPool(2);
@@ -28,10 +29,10 @@ public class ConcurrentStoreTest {
         @Override
         public String call() {
             while (true){
-                String msg = System.currentTimeMillis()+"";
-                msgQueue.add(msg);
-                System.out.println("Producer "+name+" : add "+msg);
                 try {
+                    String msg = System.currentTimeMillis()+""+new Random().nextInt(20);
+                    System.out.println("Producer "+name+" : add "+msg);
+                    msgQueue.put(msg);
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -48,15 +49,10 @@ public class ConcurrentStoreTest {
         @Override
         public String call() {
             while (true){
-                String msg = null;
                 try {
-                    msg = msgQueue.poll(600, TimeUnit.MILLISECONDS);
-                } catch (InterruptedException e) {
-                    System.out.println("木有等到新的产品");
-                }
-                System.out.println("Customer "+name+" : poll "+msg);
-                try {
-                    Thread.sleep(500);
+                    String msg = msgQueue.poll(6000, TimeUnit.MILLISECONDS);
+                    System.out.println("Customer "+name+" : poll "+msg);
+                    Thread.sleep(4000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
